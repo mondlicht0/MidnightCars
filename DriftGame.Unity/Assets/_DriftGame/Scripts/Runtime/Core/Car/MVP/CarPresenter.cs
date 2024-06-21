@@ -1,16 +1,16 @@
 using System;
-using CarOut.Cars.Attributes;
+using CarOut.Cars.MVP;
 using UnityEngine;
 
-namespace CarOut.Cars.MVP 
+namespace DriftGame.Cars
 {
 	public class CarPresenter : Presenter
 	{
 		private CarVisual _visual;
 		private CarModel _model;
-		private ICarController _controller;
+		private CarController _controller;
 
-		private CarPresenter(CarModel model, CarVisual view, ICarController controller) : base(model, view) 
+		private CarPresenter(CarModel model, CarVisual view, CarController controller) : base(model, view) 
 		{
 			_model = model;
 			_visual = view;
@@ -26,7 +26,7 @@ namespace CarOut.Cars.MVP
 
 		public void PhysicsUpdate()
 		{
-			
+			_controller.ApplyController();
 		}
 		
 		public class Builder
@@ -39,7 +39,7 @@ namespace CarOut.Cars.MVP
 				return this;
 			}
 
-			public CarPresenter Build(CarVisual visual, ICarController controller)
+			public CarPresenter Build(CarVisual visual, CarController controller)
 			{
 				if (visual == null)
 				{

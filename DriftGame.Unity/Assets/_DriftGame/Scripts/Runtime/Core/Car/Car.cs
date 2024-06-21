@@ -1,9 +1,8 @@
-using CarOut.Cars.Attributes;
-using CarOut.Cars.Controller;
 using CarOut.Cars.MVP;
 using UnityEngine;
+using Zenject;
 
-namespace CarOut.Cars
+namespace DriftGame.Cars
 {
 	public class Car : MonoBehaviour
 	{
@@ -11,14 +10,22 @@ namespace CarOut.Cars
 
 		private CarVisual _carVisual;
 		private CarPresenter _carPresenter;
-		private CarControllerWheelBased _controller;
+		private CarController _controller;
 		private InputHandler _inputHandler;
 		private Vector2 _moveInput;
 		
+		public Rigidbody RigidBody { get; private set; }
+
+		[Inject]
+		private void Construct(InputHandler inputHandler)
+		{
+			_inputHandler = inputHandler;
+		}
+		
 		private void Awake()
 		{
-			_inputHandler = GetComponent<InputHandler>();
-			_controller = GetComponent<CarControllerWheelBased>();
+			RigidBody = GetComponent<Rigidbody>();
+			_controller = GetComponent<CarController>();
 			_carVisual = GetComponentInChildren<CarVisual>();
 		}
 

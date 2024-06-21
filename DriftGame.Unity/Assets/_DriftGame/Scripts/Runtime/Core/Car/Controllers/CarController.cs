@@ -1,9 +1,8 @@
 ﻿using System;
-using CarOut.Cars.Attributes;
 using UnityEngine;
 using Zenject;
 
-namespace CarOut.Cars
+namespace DriftGame.Cars
 {
     public class CarController : MonoBehaviour
     {
@@ -42,8 +41,8 @@ namespace CarOut.Cars
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
-
-        private void Update()
+        
+        public void ApplyController()
         {
             _currentSpeed = _RRWheel.WheelCollider.rpm * _RRWheel.WheelCollider.radius * 2f * Mathf.PI / 10f;
             UpdateSlipAngle();

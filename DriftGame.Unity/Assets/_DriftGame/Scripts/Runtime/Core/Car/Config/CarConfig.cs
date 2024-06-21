@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace CarOut.Cars.Attributes 
+namespace DriftGame.Cars 
 {
 	[CreateAssetMenu(fileName = "New Car Config", menuName = "Configs/Car Config", order = 0)]
 	public class CarConfig : ScriptableObject

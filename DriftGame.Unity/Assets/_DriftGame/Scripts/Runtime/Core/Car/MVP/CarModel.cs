@@ -1,7 +1,6 @@
-using CarOut.Cars.Attributes;
 using UnityEngine;
 
-namespace CarOut.Cars.MVP
+namespace DriftGame.Cars
 {
 	public class CarModel : Model
 	{

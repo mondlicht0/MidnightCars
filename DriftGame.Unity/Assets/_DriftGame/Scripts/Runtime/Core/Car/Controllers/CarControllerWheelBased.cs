@@ -1,5 +1,4 @@
 using System;
-using CarOut.Cars.Attributes;
 using UnityEngine;
 
 namespace CarOut.Cars.Controller 
