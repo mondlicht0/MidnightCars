@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultCarConfig
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Car
-  <MotorPower>k__BackingField: 1000000
+  <MotorPower>k__BackingField: 5000000
   <BrakePower>k__BackingField: 10000

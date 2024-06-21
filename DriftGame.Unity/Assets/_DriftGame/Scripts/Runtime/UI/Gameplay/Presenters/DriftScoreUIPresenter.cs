@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DriftGame.Cars;
 using TMPro;
@@ -34,6 +35,7 @@ namespace DriftGame.UI
         private float _totalScore;
         private bool _isDrifting = false;
         private IEnumerator _stopDriftingCoroutine;
+        private CancellationTokenSource _cancel;
 
         private void Awake()
         {
@@ -62,7 +64,7 @@ namespace DriftGame.UI
 
             if (isInDrift)
             {
-                if (!_isDrifting || _stopDriftingCoroutine != null)
+                if (!_isDrifting || _cancel != null)
                 {
                     StartDrift();
                 }
@@ -70,7 +72,7 @@ namespace DriftGame.UI
 
             else
             {
-                if (_isDrifting && _stopDriftingCoroutine == null)
+                if (_isDrifting && _cancel == null)
                 {
                     StopDrift();
                 }
@@ -84,7 +86,7 @@ namespace DriftGame.UI
             }
         }
 
-        private async void StartDrift()
+        private async UniTaskVoid StartDrift()
         {
             if (!_isDrifting)
             {
@@ -92,33 +94,44 @@ namespace DriftGame.UI
                 _driftFactor = 1;
             }
 
-            if (_stopDriftingCoroutine != null)
+            if (_cancel != null)
             {
-                StopCoroutine(_stopDriftingCoroutine);
-                _stopDriftingCoroutine = null;
+                _cancel.Cancel();
+                _cancel = null;
             }
 
             _currentScoreText.color = _normalDriftColor;
             _isDrifting = true;
         }
         
-        private void StopDrift()
+        private async UniTaskVoid StopDrift()
         {
-            _stopDriftingCoroutine = StopDriftingTask();
-            StartCoroutine(_stopDriftingCoroutine);
+            _cancel = new CancellationTokenSource();
+            await StopDriftingTask(_cancel.Token);
         }
 
-        private IEnumerator StopDriftingTask()
+        private async UniTask StopDriftingTask(CancellationToken token)
         {
-            yield return new WaitForSeconds(0.1f);
-            _currentScoreText.color = _nearStopColor;
-            yield return new WaitForSeconds(_driftingDelay * 4);
-            _totalScore += _currentScore;
-            _isDrifting = false;
-            _currentScoreText.color = _driftEndedColor;
-            yield return new WaitForSeconds(0.5f);
-            _currentScore = 0;
-            _canvas.gameObject.SetActive(false);
+            try
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: token);
+                _currentScoreText.color = _nearStopColor;
+                await UniTask.Delay(TimeSpan.FromSeconds(_driftingDelay * 4), cancellationToken: token);
+                _totalScore += _currentScore;
+                _isDrifting = false;
+                _currentScoreText.color = _driftEndedColor;
+                await UniTask.Delay(TimeSpan.FromSeconds(_driftingDelay * 4), cancellationToken: token);
+                _currentScore = 0;
+                _canvas.gameObject.SetActive(false);
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                _cancel = null;
+            }
         }
 
         private void HandleUI()
