@@ -1,10 +1,11 @@
 using CarOut.Cars.MVP;
+using Fusion;
 using UnityEngine;
 using Zenject;
 
 namespace DriftGame.Cars
 {
-	public class Car : MonoBehaviour
+	public class Car : NetworkBehaviour
 	{
 		[SerializeField] private CarConfig _carData;
 
@@ -15,16 +16,11 @@ namespace DriftGame.Cars
 		private Vector2 _moveInput;
 		
 		public Rigidbody RigidBody { get; private set; }
-
-		[Inject]
-		private void Construct(InputHandler inputHandler)
-		{
-			_inputHandler = inputHandler;
-		}
 		
 		private void Awake()
 		{
 			RigidBody = GetComponent<Rigidbody>();
+			_inputHandler = GetComponent<InputHandler>();
 			_controller = GetComponent<CarController>();
 			_carVisual = GetComponentInChildren<CarVisual>();
 		}
@@ -35,15 +31,11 @@ namespace DriftGame.Cars
 				.WithConfig(_carData)
 				.Build(_carVisual, _controller);
 		}
-
-		private void Update()
+		
+		public override void FixedUpdateNetwork()
 		{
 			_carPresenter.LogicUpdate(_inputHandler.MovementInput);
-		}
-
-		private void FixedUpdate()
-		{
-			_carPresenter.PhysicsUpdate();
+			_carPresenter.PhysicsUpdate(_inputHandler.MovementInput, _inputHandler.IsHandbraking);
 		}
 	}
 }

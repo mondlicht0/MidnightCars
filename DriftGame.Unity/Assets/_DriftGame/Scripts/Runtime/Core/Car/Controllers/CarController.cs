@@ -16,50 +16,41 @@ namespace DriftGame.Cars
         [Space] 
         [SerializeField] private AnimationCurve _steeringCurve;
         
-        private InputHandler _inputHandler;
         private Rigidbody _rigidbody;
         private float _currentSpeed;
         private float _slipAngle;
         private float _brake;
-
-        private float _accelerationInput => _inputHandler.MovementInput.y;
-
-        private float _steeringInput => _inputHandler.MovementInput.x;
-        private bool _handbrakeInput => _inputHandler.IsHandbraking;
-        
-        [Inject]
-        private void Construct(InputHandler inputHandler)
-        {
-            _inputHandler = inputHandler;
-        }
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
         
-        public void ApplyController()
+        public void ApplyController(Vector2 movementInput, bool handbrakeInput)
         {
+            float steeringInput = movementInput.x;
+            float accelerationInput = movementInput.y;
+            
             _currentSpeed = _RRWheel.WheelCollider.rpm * _RRWheel.WheelCollider.radius * 2f * Mathf.PI / 10f;
-            UpdateSlipAngle();
-            ApplyAcceleration();
-            ApplySteering();
-            ApplyBrake();
+            UpdateSlipAngle(accelerationInput);
+            ApplyAcceleration(accelerationInput);
+            ApplySteering(steeringInput);
+            ApplyBrake(handbrakeInput);
             ApplyWheelTransforms();
         }
 
-        private void UpdateSlipAngle()
+        private void UpdateSlipAngle(float accelerationInput)
         {
             _slipAngle = Vector3.Angle(transform.forward, _rigidbody.velocity - transform.forward);
             float movingDirection = Vector3.Dot(transform.forward, _rigidbody.velocity);
             
-            if (movingDirection < -0.5f && _accelerationInput > 0)
+            if (movingDirection < -0.5f && accelerationInput > 0)
             {
-                _brake = Mathf.Abs(_accelerationInput);
+                _brake = Mathf.Abs(accelerationInput);
             }
-            else if (movingDirection > 0.5f && _accelerationInput < 0)
+            else if (movingDirection > 0.5f && accelerationInput < 0)
             {
-                _brake = Mathf.Abs(_accelerationInput);
+                _brake = Mathf.Abs(accelerationInput);
             }
             else
             {
@@ -67,13 +58,13 @@ namespace DriftGame.Cars
             }
         }
 
-        private void ApplyAcceleration()
+        private void ApplyAcceleration(float accelerationInput)
         {
-            _RRWheel.WheelCollider.motorTorque = _carConfig.MotorPower * _accelerationInput;
-            _RLWheel.WheelCollider.motorTorque = _carConfig.MotorPower * _accelerationInput;
+            _RRWheel.WheelCollider.motorTorque = _carConfig.MotorPower * accelerationInput;
+            _RLWheel.WheelCollider.motorTorque = _carConfig.MotorPower * accelerationInput;
         }
         
-        private void ApplyBrake()
+        private void ApplyBrake(bool handbrakeInput)
         {
             _FRWheel.WheelCollider.brakeTorque = _brake * _carConfig.BrakePower * 0.7f;
             _FLWheel.WheelCollider.brakeTorque = _brake * _carConfig.BrakePower * 0.7f;
@@ -81,16 +72,16 @@ namespace DriftGame.Cars
             _RRWheel.WheelCollider.brakeTorque = _brake * _carConfig.BrakePower * 0.3f;
             _RLWheel.WheelCollider.brakeTorque = _brake * _carConfig.BrakePower * 0.3f;
             
-            if (_handbrakeInput)
+            if (handbrakeInput)
             {
                 _RRWheel.WheelCollider.brakeTorque = _carConfig.BrakePower * 1000f;
                 _RLWheel.WheelCollider.brakeTorque = _carConfig.BrakePower * 1000f;
             }
         }
 
-        private void ApplySteering()
+        private void ApplySteering(float steeringInput)
         {
-            float steeringAngle = _steeringInput * _steeringCurve.Evaluate(_currentSpeed);
+            float steeringAngle = steeringInput * _steeringCurve.Evaluate(_currentSpeed);
             
             if (_slipAngle < 120f)
             {

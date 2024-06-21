@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de34ba7de44833a4e88a8f25dd37a1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Online: 0
 --- !u!1 &546266813
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1630658697}
+  - component: {fileID: 1630658698}
   m_Layer: 0
   m_Name: GARAGE
   m_TagString: Untagged
@@ -876,6 +878,18 @@ Transform:
   - {fileID: 45811009152516307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1630658698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630658696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807fb0c793b5f754c81137bafe94da4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1741803328
 GameObject:
   m_ObjectHideFlags: 0

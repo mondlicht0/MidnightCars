@@ -24,9 +24,9 @@ namespace DriftGame.Cars
 			_model.UpdateCarInput(input);
 		}
 
-		public void PhysicsUpdate()
+		public void PhysicsUpdate(Vector2 movementInput, bool handbrakeInput)
 		{
-			_controller.ApplyController();
+			_controller.ApplyController(movementInput, handbrakeInput);
 		}
 		
 		public class Builder
