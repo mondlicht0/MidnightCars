@@ -10,15 +10,13 @@
 
 .tabs-content {
     height: 80px;
-    background-color: rgba(0, 0, 0, 0.43);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.69);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     flex-direction: row;
     justify-content: space-around;
-    padding-right: 100px;
-    padding-left: 100px;
 }
 
 .tab-content {
@@ -38,6 +36,7 @@
     margin-left: 2px;
     align-items: center;
     justify-content: center;
+    transition-duration: 0.2s;
 }
 
 .tab Label {
@@ -45,13 +44,71 @@
     color: rgb(255, 95, 0);
     -unity-font-style: bold;
     -unity-text-align: middle-center;
+    transition-duration: 0.2s;
 }
 
 .tab-selected {
     background-color: rgb(255, 95, 0);
+    transition-duration: 0.2s;
 }
 
 .tab-selected Label {
     color: rgb(255, 255, 255);
     font-size: 36px;
+    transition-duration: 0.2s;
+}
+
+.level {
+    background-color: rgb(255, 255, 255);
+    height: 400px;
+    width: 400px;
+    margin-top: 0;
+    margin-right: 12px;
+    margin-bottom: 0;
+    margin-left: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.level Label {
+    color: rgb(255, 95, 0);
+    font-size: 80px;
+    -unity-font-style: bold;
+}
+
+.levels {
+}
+
+.levels ScrollView {
+    align-items: center;
+    justify-content: center;
+}
+
+.levels ScrollView #unity-content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.page {
+    transition-duration: 0.2s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(147, 70, 26, 0.4);
+}
+
+.page__active {
+    transition-duration: 0.2s;
+}
+
+.page__left {
+    transition-duration: 0.2s;
+    translate: -150% 0;
 }

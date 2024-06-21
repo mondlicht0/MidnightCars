@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_DriftGame/UI%20Toolkit/DriftGame/Styles/General.uss?fileID=7433441132597879392&amp;guid=70da06c3940a171449784aff223ea24e&amp;type=3#General" />
-    <ui:VisualElement name="Content" class="content" style="flex-grow: 1;">
+    <ui:VisualElement name="Content" class="content" style="flex-grow: 1; background-color: rgba(48, 48, 48, 0);">
         <ui:VisualElement name="Menu" style="flex-grow: 1;">
             <ui:VisualElement name="Tabs" class="tabs-content" style="flex-grow: 0;">
                 <ui:VisualElement class="tab" style="flex-grow: 1;">
@@ -22,8 +22,31 @@
                     <ui:Label tabindex="-1" text="CURRENCY" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="TabContent" class="tab-content" style="flex-grow: 1;">
-                <ui:VisualElement name="Levels" style="flex-grow: 1;" />
+            <ui:VisualElement name="TabContent" class="tab-content" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0);">
+                <ui:VisualElement name="Levels" class="levels page" style="flex-grow: 1; display: flex;">
+                    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" style="height: 100%; width: 100%; display: flex;">
+                        <ui:VisualElement name="FirstLevel" class="level" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="SecondLevel" class="level" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="2" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="ThirdLevel" class="level" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="3" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="FourthLevel" class="level" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="4" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                        </ui:VisualElement>
+                    </ui:ScrollView>
+                </ui:VisualElement>
+                <ui:VisualElement name="Customization" class="page page__left" style="flex-grow: 1;" />
+                <ui:VisualElement name="Settings" class="page page__left" style="flex-grow: 1;">
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="CarShop" class="page page__left" style="flex-grow: 1;" />
+                <ui:VisualElement name="Shop" class="page page__left" style="flex-grow: 1;" />
+                <ui:VisualElement name="Currency" class="page page__left" style="flex-grow: 1;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
