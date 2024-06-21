@@ -96,8 +96,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5fe053ce46b618a4cabdbe3e60da48a2,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6e75dcebaa120be4e86636dca6d2f816,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2480,6 +2482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425282143}
   - component: {fileID: 1425282144}
+  - component: {fileID: 1425282145}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -2533,6 +2536,18 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!114 &1425282145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425282142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb3ef7c2af845feb59dab88f4689b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458102062
 GameObject:
   m_ObjectHideFlags: 0

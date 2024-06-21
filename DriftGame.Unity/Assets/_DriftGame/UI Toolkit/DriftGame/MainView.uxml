@@ -22,7 +22,9 @@
                     <ui:Label tabindex="-1" text="CURRENCY" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="TabContent" class="tab-content" style="flex-grow: 1;" />
+            <ui:VisualElement name="TabContent" class="tab-content" style="flex-grow: 1;">
+                <ui:VisualElement name="Levels" style="flex-grow: 1;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
