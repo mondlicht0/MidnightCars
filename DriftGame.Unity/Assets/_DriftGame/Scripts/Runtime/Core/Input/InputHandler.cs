@@ -5,6 +5,7 @@ public class InputHandler : MonoBehaviour
 {
 	private Controls _controls;
 	public Vector2 MovementInput { get; private set; }
+	public bool IsHandbraking { get; private set; }
 	
 	private void OnEnable()
 	{
@@ -24,5 +25,10 @@ public class InputHandler : MonoBehaviour
 	public void OnMoveInput(InputAction.CallbackContext context)
 	{
 		MovementInput = context.ReadValue<Vector2>();
+	}
+
+	public void OnBrakeInput(InputAction.CallbackContext context)
+	{
+		IsHandbraking = context.ReadValueAsButton();
 	}
 }

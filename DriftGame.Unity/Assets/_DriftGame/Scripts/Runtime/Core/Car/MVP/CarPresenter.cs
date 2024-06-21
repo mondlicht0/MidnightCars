@@ -26,13 +26,7 @@ namespace CarOut.Cars.MVP
 
 		public void PhysicsUpdate()
 		{
-			_controller.Move(
-				_model.MoveDirection, 
-				_model.CarData.AccelerationSpeed, 
-				_model.CarData.WheelBase, 
-				_model.CarData.TurnRadius, 
-				_model.CarData.RearTrack
-			);
+			
 		}
 		
 		public class Builder
