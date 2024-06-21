@@ -48,18 +48,18 @@ namespace DriftGame.Systems
                 return;
             }
 #endif
-            LoadAndStartGameplay();
+            LoadGarage();
         }
 
-        private async UniTask LoadAndStartGameplay()
+        private async UniTask LoadGarage()
         {
             _uiRoot.ShowLoadingScreen();
             await SceneManager.LoadSceneAsync(Scenes.Boot);
-            await SceneManager.LoadSceneAsync(Scenes.Gameplay);
+            await SceneManager.LoadSceneAsync(Scenes.Garage);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            var sceneInstaller = Object.FindFirstObjectByType<GameplaySceneInstaller>();
-            sceneInstaller.Run();
+            var sceneInstaller = Object.FindFirstObjectByType<GarageSceneInstaller>();
+            sceneInstaller.Run(_uiRoot);
             
             _uiRoot.HideLoadingScreen();
         }
