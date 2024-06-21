@@ -22,11 +22,7 @@ namespace DriftGame.Cars
         private float _slipAngle;
         private float _brake;
 
-        private float _accelerationInput
-        {
-            get => _inputHandler.MovementInput.y;
-            set => _accelerationInput = value;
-        }
+        private float _accelerationInput => _inputHandler.MovementInput.y;
 
         private float _steeringInput => _inputHandler.MovementInput.x;
         private bool _handbrakeInput => _inputHandler.IsHandbraking;
