@@ -19,14 +19,14 @@ namespace DriftGame.Cars
 			_visual.Init(this);
 		}
 
-		public void LogicUpdate(Vector2 input)
+		public void LogicUpdate(Vector2 input, bool handbrakeInput)
 		{
-			_model.UpdateCarInput(input);
+			_model.UpdateCarInput(input, handbrakeInput);
 		}
 
-		public void PhysicsUpdate(bool handbrakeInput)
+		public void PhysicsUpdate()
 		{
-			_controller.ApplyController(_model.MoveDirection, handbrakeInput);
+			_controller.ApplyController(_model.MoveDirection, _model.HandbrakeInput);
 		}
 		
 		public class Builder

@@ -1011,7 +1011,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 582302718}
+  - component: {fileID: 582302719}
   - component: {fileID: 582302717}
+  - component: {fileID: 582302720}
   m_Layer: 0
   m_Name: SPAWNER
   m_TagString: Untagged
@@ -1032,7 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab:
-    RawGuidValue: 8a8728c43caf80e4c8d29c36006fee5e
+    RawGuidValue: fa5250aa5ad94244988914a6e2b40aeb
 --- !u!4 &582302718
 Transform:
   m_ObjectHideFlags: 0
@@ -1048,6 +1050,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &582302719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582302716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2339330623
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []
+--- !u!114 &582302720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582302716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08aad006f0fb6e34f88abfd8b3ed0e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &820509664
 GameObject:
   m_ObjectHideFlags: 3
@@ -3580,11 +3611,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4796287745592072401, guid: 8a8728c43caf80e4c8d29c36006fee5e,
-        type: 3}
-      propertyPath: SortKey
-      value: 1570875952
       objectReference: {fileID: 0}
     - target: {fileID: 5939273673431965145, guid: 8a8728c43caf80e4c8d29c36006fee5e,
         type: 3}

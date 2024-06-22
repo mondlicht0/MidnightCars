@@ -1,3 +1,4 @@
+using System;
 using CarOut.Cars.MVP;
 using DriftGame.Network;
 using Fusion;
@@ -6,7 +7,7 @@ using Zenject;
 
 namespace DriftGame.Cars
 {
-	public class Car : NetworkBehaviour
+	public class Car : MonoBehaviour
 	{
 		[SerializeField] private CarConfig _carData;
 
@@ -32,18 +33,15 @@ namespace DriftGame.Cars
 				.WithConfig(_carData)
 				.Build(_carVisual, _controller);
 		}
-		
-		public override void FixedUpdateNetwork()
-		{
-			//_carPresenter.LogicUpdate(_inputHandler.MovementInput);
-			//_carPresenter.PhysicsUpdate(_inputHandler.MovementInput, _inputHandler.IsHandbraking);
 
-			if (GetInput(out NetworkInputData data))
-			{
-				data.direction.Normalize();
-				_carPresenter.LogicUpdate(data.direction);
-				_carPresenter.PhysicsUpdate(false);
-			}
+		private void Update()
+		{
+			_carPresenter.LogicUpdate(_inputHandler.MovementInput, _inputHandler.IsHandbraking);
+		}
+
+		private void FixedUpdate()
+		{
+			_carPresenter.PhysicsUpdate();
 		}
 	}
 }

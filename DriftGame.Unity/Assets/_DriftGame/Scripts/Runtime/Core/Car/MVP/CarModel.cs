@@ -6,15 +6,17 @@ namespace DriftGame.Cars
 	{
 		public CarConfig CarData { get; private set; }
 		public Vector2 MoveDirection { get; private set; }
+		public bool HandbrakeInput { get; private set; }
 		
 		public CarModel(CarConfig carData)
 		{
 			CarData = carData;
 		}
 
-		public void UpdateCarInput(Vector2 newDirection)
+		public void UpdateCarInput(Vector2 newDirection, bool handbrakeInput)
 		{
 			MoveDirection = newDirection;
+			HandbrakeInput = handbrakeInput;
 		}
 	}
 }

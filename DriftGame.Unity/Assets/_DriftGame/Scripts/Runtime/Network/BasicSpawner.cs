@@ -82,15 +82,18 @@ namespace DriftGame.Network
 
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            if (_inputHandler == null && _runner.TryGetPlayerObject(_runner.LocalPlayer, out var playerObject))
+            /*if (_inputHandler == null && _runner.TryGetPlayerObject(_runner.LocalPlayer, out var playerObject))
             {
                 _inputHandler = playerObject.GetComponent<InputHandler>();
+                Debug.Log("Hairy0");
             }
 
             if (_inputHandler != null)
             {
                 input.Set(_inputHandler.GetNetworkInput());
+                Debug.Log("Hairy");
             }
+            Debug.Log("Hairy1");*/
         }
 
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)

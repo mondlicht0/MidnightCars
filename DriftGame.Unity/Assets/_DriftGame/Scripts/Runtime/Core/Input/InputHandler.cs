@@ -32,11 +32,4 @@ public class InputHandler : MonoBehaviour
 	{
 		IsHandbraking = context.ReadValueAsButton();
 	}
-
-	public NetworkInputData GetNetworkInput()
-	{
-		NetworkInputData networkInputData = new NetworkInputData();
-		networkInputData.direction = MovementInput;
-		return networkInputData;
-	}
 }
