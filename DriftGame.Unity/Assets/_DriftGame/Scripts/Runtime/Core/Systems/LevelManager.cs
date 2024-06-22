@@ -1,31 +1,17 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using DriftGame.UI;
+using DriftGame;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
 using Object = UnityEngine.Object;
 
-namespace DriftGame
+namespace _DriftGame.Scripts.Runtime.Core.Systems
 {
-    public class GarageSceneInstaller : MonoInstaller
+    public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private MainMenuPresenter _mainMenu;
         private UIRoot _uiRoot;
         
-        public override void InstallBindings()
-        {
-            
-        }
-
-        public void Run(UIRoot uiRoot)
-        {
-            _uiRoot = uiRoot;
-            Debug.Log("Garage scene loaded");
-            _mainMenu.OnLevel += LoadGameplay;
-        }
-
-        private async void LoadGameplay()
+        public async UniTask LoadLevel()
         {
             _uiRoot.ShowLoadingScreen();
             await SceneManager.LoadSceneAsync(Scenes.Gameplay);

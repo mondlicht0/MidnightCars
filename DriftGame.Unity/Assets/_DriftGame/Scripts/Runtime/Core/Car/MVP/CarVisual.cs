@@ -6,10 +6,16 @@ namespace CarOut.Cars.MVP
 	public class CarVisual : View
 	{
 		[SerializeField] private MeshFilter _carMesh;
+		[SerializeField] private MeshRenderer _carRenderer;
 
 		private void Start()
 		{
 			InitVisual();
+		}
+
+		public void ChangeColor(Color color)
+		{
+			_carRenderer.material.color = color;
 		}
 
 		private void InitVisual()
@@ -24,9 +30,14 @@ namespace CarOut.Cars.MVP
 				_carMesh = meshFilter;
 			}
 
-			else
+			if (_carRenderer != null)
 			{
-				throw new Exception("Car Mesh is null");
+				return;
+			}
+
+			if (TryGetComponent(out MeshRenderer meshRenderer))
+			{
+				_carRenderer = meshRenderer;
 			}
 		}
 	}
