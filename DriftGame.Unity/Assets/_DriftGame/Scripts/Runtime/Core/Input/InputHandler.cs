@@ -1,3 +1,4 @@
+using DriftGame.Network;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,5 +31,12 @@ public class InputHandler : MonoBehaviour
 	public void OnBrakeInput(InputAction.CallbackContext context)
 	{
 		IsHandbraking = context.ReadValueAsButton();
+	}
+
+	public NetworkInputData GetNetworkInput()
+	{
+		NetworkInputData networkInputData = new NetworkInputData();
+		networkInputData.direction = MovementInput;
+		return networkInputData;
 	}
 }

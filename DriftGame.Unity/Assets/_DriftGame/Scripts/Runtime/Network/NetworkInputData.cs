@@ -1,8 +1,10 @@
 using Fusion;
 using UnityEngine;
 
-public struct NetworkInputData : INetworkInput
+namespace DriftGame.Network
 {
-    public Vector3 Direction;
-    public bool IsHandbraking;
+    public struct NetworkInputData : INetworkInput
+    {
+        public Vector3 direction;
+    }
 }

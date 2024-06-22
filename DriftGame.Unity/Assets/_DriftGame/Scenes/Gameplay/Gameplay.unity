@@ -3576,6 +3576,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CAR
       objectReference: {fileID: 0}
+    - target: {fileID: 386671850630715176, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4796287745592072401, guid: 8a8728c43caf80e4c8d29c36006fee5e,
         type: 3}
       propertyPath: SortKey

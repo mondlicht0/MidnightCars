@@ -12,6 +12,7 @@ namespace DriftGame.Network
         [SerializeField] private NetworkPrefabRef _playerPrefab;
         private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new();
         private NetworkRunner _runner;
+        private InputHandler _inputHandler;
 
         private async void StartGame(GameMode mode)
         {
@@ -81,19 +82,15 @@ namespace DriftGame.Network
 
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            var data = new NetworkInputData();
-            if (Input.GetKey(KeyCode.W))
-                data.Direction += Vector3.forward;
+            if (_inputHandler == null && _runner.TryGetPlayerObject(_runner.LocalPlayer, out var playerObject))
+            {
+                _inputHandler = playerObject.GetComponent<InputHandler>();
+            }
 
-            if (Input.GetKey(KeyCode.S))
-                data.Direction += Vector3.back;
-
-            if (Input.GetKey(KeyCode.A))
-                data.Direction += Vector3.left;
-
-            if (Input.GetKey(KeyCode.D))
-                data.Direction += Vector3.right;
-            input.Set(data);
+            if (_inputHandler != null)
+            {
+                input.Set(_inputHandler.GetNetworkInput());
+            }
         }
 
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)

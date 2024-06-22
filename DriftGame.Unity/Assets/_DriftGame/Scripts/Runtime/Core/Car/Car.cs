@@ -1,4 +1,5 @@
 using CarOut.Cars.MVP;
+using DriftGame.Network;
 using Fusion;
 using UnityEngine;
 using Zenject;
@@ -34,8 +35,15 @@ namespace DriftGame.Cars
 		
 		public override void FixedUpdateNetwork()
 		{
-			_carPresenter.LogicUpdate(_inputHandler.MovementInput);
-			_carPresenter.PhysicsUpdate(_inputHandler.MovementInput, _inputHandler.IsHandbraking);
+			//_carPresenter.LogicUpdate(_inputHandler.MovementInput);
+			//_carPresenter.PhysicsUpdate(_inputHandler.MovementInput, _inputHandler.IsHandbraking);
+
+			if (GetInput(out NetworkInputData data))
+			{
+				data.direction.Normalize();
+				_carPresenter.LogicUpdate(data.direction);
+				_carPresenter.PhysicsUpdate(false);
+			}
 		}
 	}
 }
