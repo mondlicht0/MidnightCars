@@ -1,5 +1,6 @@
 using System;
 using CarOut.Cars.MVP;
+using DriftGame.Cars;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,7 @@ namespace DriftGame.UI
     public class MainMenuPresenter : MonoBehaviour
     {
         [SerializeField] private CarVisual _carVisual;
+        private CarPresenter _carPresenter;
         private UIDocument _uiDocument;
 
         private VisualElement RootElement => _uiDocument.rootVisualElement;
@@ -37,6 +39,10 @@ namespace DriftGame.UI
 
         private void Start()
         {
+            _carPresenter = new CarPresenter.Builder()
+                .WithConfig(null)
+                .Build(_carVisual, null);
+            
             InitLevelsTab();
             InitHeaderTabs();
             InitCustomizationTab();
@@ -46,8 +52,12 @@ namespace DriftGame.UI
         {
             _colorPicker = RootElement.Q<ColorPickerElement>();
             _colorPicker.OnColorPicked += _carVisual.ChangeColor;
-            
-            
+
+            _rearSpoilerOption = RootElement.Q("RearSpoilerOption");
+            _rearSpoilerOption.RegisterCallback<ClickEvent>(evt => _carVisual.AddSpoiler());
+
+            _upgradeEngineOption = RootElement.Q("UpgradeEngine");
+            _upgradeEngineOption.RegisterCallback<ClickEvent>(evt => _carPresenter.UpgradeEngine());
         }
 
         private void InitHeaderTabs()

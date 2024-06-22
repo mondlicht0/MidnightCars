@@ -40,14 +40,14 @@
                     </ui:ScrollView>
                 </ui:VisualElement>
                 <ui:VisualElement name="Customization" class="page" style="flex-grow: 0; width: 27%;">
-                    <ui:VisualElement class="customization_field" style="flex-grow: 0;">
+                    <ui:VisualElement name="RearSpoilerOption" class="customization_field" style="flex-grow: 0;">
                         <ui:Label tabindex="-1" text="Add/Remove Rear Spoiler" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 30px;" />
                     </ui:VisualElement>
                     <ui:VisualElement class="customization_field" style="flex-grow: 0; height: 250px;">
                         <ui:Label tabindex="-1" text="Choose Car Color" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 30px;" />
                         <ColorPickerElement hue="0,5" style="width: 353px; height: 470px;" />
                     </ui:VisualElement>
-                    <ui:VisualElement class="customization_field" style="flex-grow: 0;">
+                    <ui:VisualElement name="UpgradeEngine" class="customization_field" style="flex-grow: 0;">
                         <ui:Label tabindex="-1" text="Upgrade Engine (TO LVL2)" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 30px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>

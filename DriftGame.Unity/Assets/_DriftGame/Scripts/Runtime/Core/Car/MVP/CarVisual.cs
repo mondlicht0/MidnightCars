@@ -7,6 +7,7 @@ namespace CarOut.Cars.MVP
 	{
 		[SerializeField] private MeshFilter _carMesh;
 		[SerializeField] private MeshRenderer _carRenderer;
+		[SerializeField] private GameObject _spoiler;
 
 		private void Start()
 		{
@@ -16,6 +17,11 @@ namespace CarOut.Cars.MVP
 		public void ChangeColor(Color color)
 		{
 			_carRenderer.material.color = color;
+		}
+
+		public void AddSpoiler()
+		{
+			_spoiler.SetActive(true);
 		}
 
 		private void InitVisual()

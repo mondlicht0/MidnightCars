@@ -9,6 +9,11 @@ namespace DriftGame.Cars
 		private CarVisual _visual;
 		private CarModel _model;
 		private CarController _controller;
+		
+		public void UpgradeEngine()
+		{
+			_model.UpgradeEngine();
+		}
 
 		private CarPresenter(CarModel model, CarVisual view, CarController controller) : base(model, view) 
 		{
@@ -48,7 +53,7 @@ namespace DriftGame.Cars
 
 				if (controller == null)
 				{
-					throw new Exception("Controller is null");
+					Debug.Log("Controller is null");
 				}
 			
 				return new CarPresenter(_model, visual, controller);

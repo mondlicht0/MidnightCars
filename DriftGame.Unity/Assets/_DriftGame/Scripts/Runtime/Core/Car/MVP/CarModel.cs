@@ -13,6 +13,11 @@ namespace DriftGame.Cars
 			CarData = carData;
 		}
 
+		public void UpgradeEngine()
+		{
+			Debug.Log("Upgraded");
+		}
+
 		public void UpdateCarInput(Vector2 newDirection, bool handbrakeInput)
 		{
 			MoveDirection = newDirection;
