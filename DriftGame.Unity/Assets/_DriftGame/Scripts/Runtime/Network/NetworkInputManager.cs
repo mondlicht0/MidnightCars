@@ -9,60 +9,32 @@ using UnityEngine.InputSystem;
 
 public class NetworkInputManager : SimulationBehaviour, IBeforeUpdate, INetworkRunnerCallbacks
 {
+    private Controls _controls;
     private NetworkInputData _accumulatedInput;
     private bool _resetInput;
     
+    public void OnEnable()
+    {
+        _controls = new Controls();
+        _controls.CarControls.Enable();
+
+        if (Runner != null)
+        {
+            Runner.AddCallbacks(this);
+        }
+    }
+
+    public void OnDisable()
+    {
+        if (Runner != null)
+        {
+            _controls.CarControls.Disable();
+            Runner.RemoveCallbacks(this);
+        }
+    }
+
     public void BeforeUpdate()
     {
-        if (_resetInput)
-        {
-            _resetInput = false;
-            _accumulatedInput = default;
-        }
-
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard != null && (keyboard.enterKey.wasPressedThisFrame || keyboard.escapeKey.wasPressedThisFrame))
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
-
-        if (Cursor.lockState != CursorLockMode.Locked)
-        {
-            return;
-        }
-
-        if (keyboard != null)
-        {
-            Vector2 moveDirection = Vector2.zero;
-            if (keyboard.wKey.isPressed)
-            {
-                moveDirection += Vector2.up;
-            }
-            if (keyboard.sKey.isPressed)
-            {
-                moveDirection += Vector2.down;
-            }
-            if (keyboard.aKey.isPressed)
-            {
-                moveDirection += Vector2.left;
-            }
-            if (keyboard.dKey.isPressed)
-            {
-                moveDirection += Vector2.right;
-            }
-
-            _accumulatedInput.Direction += moveDirection;
-        }
     }
 
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
@@ -88,9 +60,14 @@ public class NetworkInputManager : SimulationBehaviour, IBeforeUpdate, INetworkR
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        _accumulatedInput.Direction.Normalize();
-        input.Set(_accumulatedInput);
-        _resetInput = true;
+        var controls = new NetworkInputData();
+        var playerActions = _controls.CarControls;
+
+        controls.Direction += playerActions.Movement.ReadValue<Vector2>();
+        Debug.Log(playerActions.Movement.ReadValue<Vector2>());
+        //controls.Direction.Set(playerActions.Movement.ReadValue<Vector2>().x, playerActions.Movement.ReadValue<Vector2>().y);
+
+        input.Set(controls);
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
