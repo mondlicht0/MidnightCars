@@ -124,50 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &79757346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 79757348}
-  - component: {fileID: 79757347}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &79757347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79757346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08aad006f0fb6e34f88abfd8b3ed0e9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &79757348
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79757346}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111236051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 582302718}
   - component: {fileID: 582302717}
+  - component: {fileID: 582302719}
   m_Layer: 0
   m_Name: SPAWNER
   m_TagString: Untagged
@@ -1092,6 +1049,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &582302719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582302716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08aad006f0fb6e34f88abfd8b3ed0e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &820509664
 GameObject:
   m_ObjectHideFlags: 3
@@ -1569,6 +1538,7 @@ GameObject:
   - component: {fileID: 1060629737}
   - component: {fileID: 1060629736}
   - component: {fileID: 1060629738}
+  - component: {fileID: 1060629739}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1676,6 +1646,22 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1060629739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060629735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73b0a95be81246699cf0d9ecdc01863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreferredRunner: 0
+  Components:
+  - {fileID: 1060629736}
+  _guid: 22472413-f4c8-4e1a-
 --- !u!1 &1114328918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +1873,7 @@ GameObject:
   - component: {fileID: 1264627146}
   - component: {fileID: 1264627149}
   - component: {fileID: 1264627150}
+  - component: {fileID: 1264627151}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2046,6 +2033,22 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1264627151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264627145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73b0a95be81246699cf0d9ecdc01863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreferredRunner: 0
+  Components:
+  - {fileID: 1264627146}
+  _guid: f8b6a3c2-240e-4341-
 --- !u!1 &1291483392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3696,4 +3699,3 @@ SceneRoots:
   - {fileID: 1314431748}
   - {fileID: 1877884402}
   - {fileID: 582302718}
-  - {fileID: 79757348}
