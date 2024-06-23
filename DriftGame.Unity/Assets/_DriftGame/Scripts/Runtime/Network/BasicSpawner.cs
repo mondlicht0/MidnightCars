@@ -11,7 +11,7 @@ namespace DriftGame.Network
     public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         [SerializeField] private NetworkPrefabRef _playerPrefab;
-        private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new();
+        private Dictionary<PlayerRef, NetworkObject> _spawnedPlayers = new();
         private NetworkRunner _runner;
         private InputHandler _inputHandler;
         private NetworkInputData _accumulatedInput;
@@ -34,6 +34,12 @@ namespace DriftGame.Network
                 Scene = scene,
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
             });
+        }
+        
+        public NetworkObject GetPlayer(PlayerRef playerRef)
+        {
+            _spawnedPlayers.TryGetValue(playerRef, out NetworkObject playerObject);
+            return playerObject;
         }
         
         private void OnGUI()
@@ -67,16 +73,16 @@ namespace DriftGame.Network
             {
                 Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
                 NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
-                _spawnedCharacters.Add(player, networkPlayerObject);
+                _spawnedPlayers.Add(player, networkPlayerObject);
             }
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
-            if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkObject))
+            if (_spawnedPlayers.TryGetValue(player, out NetworkObject networkObject))
             {
                 runner.Despawn(networkObject);
-                _spawnedCharacters.Remove(player);
+                _spawnedPlayers.Remove(player);
             }
         }
 

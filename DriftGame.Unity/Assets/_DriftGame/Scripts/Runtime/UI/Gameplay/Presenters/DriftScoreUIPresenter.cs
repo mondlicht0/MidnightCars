@@ -3,14 +3,18 @@ using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DriftGame.Network;
+using Fusion;
 using TMPro;
 using UnityEngine;
 
 namespace DriftGame.UI
 {
-    public class DriftScoreUIPresenter : MonoBehaviour
+    public class DriftScoreUIPresenter : SimulationBehaviour, IPlayerJoined
     {
         private CarNetwork _car;
+
+        [SerializeField] private BasicSpawner _spawner;
+        
         [SerializeField] private TextMeshProUGUI _totalScoreText;
         [SerializeField] private TextMeshProUGUI _currentScoreText;
         [SerializeField] private TextMeshProUGUI _factorText;
@@ -26,27 +30,32 @@ namespace DriftGame.UI
         [SerializeField] private float _minimumAngle = 10;
         [SerializeField] private float _driftingDelay = 0.2f;
 
-        private Canvas _canvas;
+        [SerializeField] private Canvas _canvas;
         
-        private float _speed = 0;
-        private float _driftAngle = 0;
+        private float _speed ;
+        private float _driftAngle;
         private float _driftFactor = 1;
         private float _currentScore;
         private float _totalScore;
-        private bool _isDrifting = false;
+        private bool _isDrifting;
         private IEnumerator _stopDriftingCoroutine;
         private CancellationTokenSource _cancel;
 
         private void Awake()
         {
-            _canvas = GetComponent<Canvas>();
-            _canvas.gameObject.SetActive(false);
+            //_canvas = GetComponent<Canvas>();
+            //_canvas.gameObject.SetActive(true);
+        }
+
+        public override void FixedUpdateNetwork()
+        {
+            HandleDrift();
+            HandleUI();
         }
 
         private void Update()
         {
-            HandleDrift();
-            HandleUI();
+            
         }
 
         private void HandleDrift()
@@ -140,6 +149,11 @@ namespace DriftGame.UI
             _factorText.text = _driftFactor.ToString("###, ###, ##0.0") + "X";
             _currentScoreText.text = _currentScore.ToString("###, ###, 000");
             _driftAngleText.text = _driftAngle.ToString("###, ##0") + "*";
+        }
+
+        public void PlayerJoined(PlayerRef player)
+        {
+            _car = _spawner.GetPlayer(player).GetComponent<CarNetwork>();
         }
     }
 }
