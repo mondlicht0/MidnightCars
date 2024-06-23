@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using CarOut.Cars.MVP;
 using DriftGame.Cars;
 using DriftGame.Systems.SaveSystem;
@@ -9,7 +6,7 @@ using UnityEngine;
 
 namespace DriftGame.Network
 {
-    public class CarNetwork : NetworkBehaviour, IDataPersistence
+    public class CarNetwork : NetworkBehaviour, IDataPersistence, IPlayerJoined
     {
         [SerializeField] private CarConfig _carData;
 
@@ -35,7 +32,7 @@ namespace DriftGame.Network
 
         private void Start()
         {
-            _carPresenter.Visual.InitVisual();
+            //DataPersistenceManager.Instance.LoadGameData();
         }
 
         public override void FixedUpdateNetwork()
@@ -57,6 +54,12 @@ namespace DriftGame.Network
         public void SaveData(ref GameData data)
         {
             _carVisual.SaveData(ref data);
+        }
+
+        public void PlayerJoined(PlayerRef player)
+        {
+            _carPresenter.Visual.InitVisual();
+            DataPersistenceManager.Instance.LoadGameData();
         }
     }
 }

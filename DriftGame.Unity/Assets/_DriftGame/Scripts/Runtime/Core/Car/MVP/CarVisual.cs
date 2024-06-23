@@ -52,8 +52,6 @@ namespace CarOut.Cars.MVP
 			{
 				_carRenderer = meshRenderer;
 			}
-			
-			DataPersistenceManager.Instance.LoadGameData();
 		}
 
 		public void LoadData(GameData data)
