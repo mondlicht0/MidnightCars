@@ -53,10 +53,10 @@ namespace DriftGame.Systems
         {
             _uiRoot.ShowLoadingScreen();
             await SceneManager.LoadSceneAsync(Scenes.Boot);
-            await SceneManager.LoadSceneAsync(Scenes.Garage);
+            await SceneManager.LoadSceneAsync(Scenes.Gameplay);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            var sceneInstaller = Object.FindFirstObjectByType<GarageSceneInstaller>();
+            var sceneInstaller = Object.FindFirstObjectByType<GameplaySceneInstaller>();
             sceneInstaller.Run(_uiRoot);
             
             _uiRoot.HideLoadingScreen();

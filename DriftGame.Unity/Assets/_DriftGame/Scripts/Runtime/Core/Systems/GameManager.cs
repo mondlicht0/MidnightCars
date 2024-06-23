@@ -14,7 +14,6 @@ namespace DriftGame.Systems
         private void Start()
         {
             _timer = new Timer(_levelTime, OnTimerFinish, OnTick);
-            _timer.Invoke();
         }
 
         private void OnTick()

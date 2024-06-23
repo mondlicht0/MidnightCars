@@ -63,8 +63,7 @@ public class NetworkInputManager : SimulationBehaviour, IBeforeUpdate, INetworkR
         var controls = new NetworkInputData();
         var playerActions = _controls.CarControls;
 
-        controls.Direction += playerActions.Movement.ReadValue<Vector2>();
-        Debug.Log(playerActions.Movement.ReadValue<Vector2>());
+        controls.Direction = playerActions.Movement.ReadValue<Vector2>();
         //controls.Direction.Set(playerActions.Movement.ReadValue<Vector2>().x, playerActions.Movement.ReadValue<Vector2>().y);
 
         input.Set(controls);

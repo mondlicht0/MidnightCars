@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 480, y: -53}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111236053
 MonoBehaviour:
@@ -1059,7 +1059,6 @@ GameObject:
   - component: {fileID: 582302718}
   - component: {fileID: 582302717}
   - component: {fileID: 582302719}
-  - component: {fileID: 582302720}
   m_Layer: 0
   m_Name: SPAWNER
   m_TagString: Untagged
@@ -1108,30 +1107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08aad006f0fb6e34f88abfd8b3ed0e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &582302720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582302716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04f65fab89cc4c646986cb53ce72c374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawner: {fileID: 582302717}
-  _totalScoreText: {fileID: 111236053}
-  _currentScoreText: {fileID: 575709579}
-  _factorText: {fileID: 313574422}
-  _driftAngleText: {fileID: 1528138373}
-  _normalDriftColor: {r: 1, g: 1, b: 1, a: 1}
-  _nearStopColor: {r: 1, g: 0.74645036, b: 0, a: 1}
-  _driftEndedColor: {r: 1, g: 0, b: 0, a: 1}
-  _minimumSpeed: 5
-  _minimumAngle: 10
-  _driftingDelay: 0.2
-  _canvas: {fileID: 1114328923}
 --- !u!1 &820509664
 GameObject:
   m_ObjectHideFlags: 3

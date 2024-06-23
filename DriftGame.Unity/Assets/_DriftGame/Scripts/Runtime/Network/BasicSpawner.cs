@@ -10,12 +10,27 @@ namespace DriftGame.Network
 {
     public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
+        public static BasicSpawner Instance { get; private set; }
+        
         [SerializeField] private NetworkPrefabRef _playerPrefab;
         private Dictionary<PlayerRef, NetworkObject> _spawnedPlayers = new();
         private NetworkRunner _runner;
         private InputHandler _inputHandler;
         private NetworkInputData _accumulatedInput;
 
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+        
         private async void StartGame(GameMode mode)
         {
             _runner = gameObject.AddComponent<NetworkRunner>();

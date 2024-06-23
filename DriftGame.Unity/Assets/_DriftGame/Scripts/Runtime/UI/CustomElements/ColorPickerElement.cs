@@ -42,10 +42,10 @@ public class ColorPickerElement : VisualElement
     {
         generateVisualContent += OnGenerateVisualContent;
         RegisterCallback<ClickEvent>(OnMouseClicked);
-        RegisterCallback<DragExitedEvent>(OnDragExited);
+        RegisterCallback<MouseLeaveEvent>(OnDragExited);
     }
 
-    private void OnDragExited(DragExitedEvent evt)
+    private void OnDragExited(MouseLeaveEvent evt)
     {
         Vector2 dir = evt.localMousePosition - contentRect.center;
         Hue = 0.25f + Mathf.Atan2(-dir.y,dir.x) / Mathf.PI  * -0.5f;
