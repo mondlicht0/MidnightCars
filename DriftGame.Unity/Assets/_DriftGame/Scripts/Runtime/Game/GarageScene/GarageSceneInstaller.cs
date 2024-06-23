@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using DriftGame.Systems.SaveSystem;
 using DriftGame.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ namespace DriftGame
     public class GarageSceneInstaller : MonoInstaller
     {
         [SerializeField] private MainMenuPresenter _mainMenu;
+        [SerializeField] private DataPersistenceManager _dataPersistence;
         private UIRoot _uiRoot;
         
         public override void InstallBindings()

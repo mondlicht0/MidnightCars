@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DriftGame.Systems.SaveSystem
 {
     public class DataPersistenceManager : MonoBehaviour
     {
+        public static DataPersistenceManager Instance { get; private set; }
+        
         [Header("File Storage Config")] 
         [SerializeField] private string _fileName;
 
@@ -18,9 +20,17 @@ namespace DriftGame.Systems.SaveSystem
 
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            //DontDestroyOnLoad(gameObject);
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, _fileName, _useFileEncryption);
-            _dataPersistences = FindAllDataPersistences();
-            LoadGameData();
         }
 
         private void OnApplicationQuit()
@@ -32,15 +42,38 @@ namespace DriftGame.Systems.SaveSystem
         {
             _gameData = new GameData();
         }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            LoadGameData();
+        }
+        
+        private void OnSceneUnloaded(Scene scene)
+        {
+            SaveGameData();
+        }
         
         public void LoadGameData()
         {
+            _dataPersistences = FindAllDataPersistences();
             _gameData = _fileDataHandler.Load();
             
             if (_gameData == null)
             {
                 Debug.Log("There is no game data");
-                NewGame();
+                return;
             }
 
             foreach (IDataPersistence dataPersistence in _dataPersistences)
@@ -50,9 +83,19 @@ namespace DriftGame.Systems.SaveSystem
             
             Debug.Log("Loaded");
         }
+
+        public bool HasGameData()
+        {
+            return _gameData != null;
+        }
         
         public void SaveGameData()
         {
+            if (_gameData == null)
+            {
+                return;
+            }
+            
             foreach (IDataPersistence dataPersistence in _dataPersistences)
             {
                 dataPersistence.SaveData(ref _gameData);

@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using CarOut.Cars.MVP;
 using DriftGame.Cars;
+using DriftGame.Systems.SaveSystem;
 using Fusion;
 using UnityEngine;
 
 namespace DriftGame.Network
 {
-    public class CarNetwork : NetworkBehaviour
+    public class CarNetwork : NetworkBehaviour, IDataPersistence
     {
         [SerializeField] private CarConfig _carData;
 
@@ -45,6 +46,17 @@ namespace DriftGame.Network
             }
             
             _carPresenter.PhysicsUpdate();
+        }
+        
+        public void LoadData(GameData data)
+        {
+            _carVisual.LoadData(data);
+            _carVisual.ChangeColor(data.Color);
+        }
+
+        public void SaveData(ref GameData data)
+        {
+            _carVisual.SaveData(ref data);
         }
     }
 }
