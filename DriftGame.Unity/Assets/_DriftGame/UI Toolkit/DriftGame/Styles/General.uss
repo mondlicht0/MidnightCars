@@ -61,7 +61,7 @@
 .level {
     background-color: rgb(255, 255, 255);
     height: 400px;
-    width: 400px;
+    width: 375px;
     margin-top: 0;
     margin-right: 12px;
     margin-bottom: 0;

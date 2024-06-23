@@ -18,11 +18,15 @@ namespace DriftGame
             
         }
 
+        private void Start()
+        {
+            _mainMenu.OnLevel += LoadGameplay;
+        }
+
         public void Run(UIRoot uiRoot)
         {
             _uiRoot = uiRoot;
             Debug.Log("Garage scene loaded");
-            _mainMenu.OnLevel += LoadGameplay;
         }
 
         private async void LoadGameplay()
@@ -31,7 +35,7 @@ namespace DriftGame
             await SceneManager.LoadSceneAsync(Scenes.Gameplay);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            var sceneInstaller = Object.FindFirstObjectByType<GameplaySceneInstaller>();
+            var sceneInstaller = FindFirstObjectByType<GameplaySceneInstaller>();
             sceneInstaller.Run(_uiRoot);
             
             _uiRoot.HideLoadingScreen();

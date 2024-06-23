@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CarOut.Cars.MVP;
@@ -29,6 +30,11 @@ namespace DriftGame.Network
             _carPresenter = new CarPresenter.Builder()
                 .WithConfig(_carData)
                 .Build(_carVisual, _controller);
+        }
+
+        private void Start()
+        {
+            _carPresenter.Visual.InitVisual();
         }
 
         public override void FixedUpdateNetwork()

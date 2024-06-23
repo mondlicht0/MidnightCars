@@ -9,6 +9,8 @@ namespace DriftGame.Cars
 		private CarVisual _visual;
 		private CarModel _model;
 		private CarController _controller;
+
+		public CarVisual Visual => _visual;
 		
 		public void UpgradeEngine()
 		{

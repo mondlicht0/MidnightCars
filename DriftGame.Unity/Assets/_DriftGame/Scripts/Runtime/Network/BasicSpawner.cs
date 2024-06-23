@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -20,14 +21,12 @@ namespace DriftGame.Network
             _runner = gameObject.AddComponent<NetworkRunner>();
             _runner.ProvideInput = true;
 
-            // Create the NetworkSceneInfo from the current scene
             var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
             var sceneInfo = new NetworkSceneInfo();
             if (scene.IsValid) {
                 sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
             }
 
-            // Start or join (depends on gamemode) a session with a specific name
             await _runner.StartGame(new StartGameArgs()
             {
                 GameMode = mode,

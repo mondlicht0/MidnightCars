@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_DriftGame/Scenes/Boot.unity
     guid: 81aae53c09113e749a38fde38f787a6d
   - enabled: 1
+    path: Assets/_DriftGame/Scenes/Garage.unity
+    guid: 23883f257a9c6b049950ba6c3c168c08
+  - enabled: 1
     path: Assets/_DriftGame/Scenes/Gameplay/Gameplay.unity
     guid: b0bdf3794e1b91941a743bf10f807607
   m_configObjects: {}

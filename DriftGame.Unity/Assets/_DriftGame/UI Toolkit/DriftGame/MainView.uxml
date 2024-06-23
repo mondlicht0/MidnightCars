@@ -3,16 +3,16 @@
     <ui:VisualElement name="Content" class="content" style="flex-grow: 1; background-color: rgba(48, 48, 48, 0);">
         <ui:VisualElement name="Menu" style="flex-grow: 1;">
             <ui:VisualElement name="Tabs" class="tabs-content" style="flex-grow: 0;">
-                <ui:VisualElement class="tab" style="flex-grow: 1;">
+                <ui:VisualElement name="LevelsTab" class="tab" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="LEVELS" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement class="tab" style="flex-grow: 1;">
+                <ui:VisualElement name="CustomizationTab" class="tab" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="CUSTOMIZATION" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement class="tab" style="flex-grow: 1;">
+                <ui:VisualElement name="SettingsTab" class="tab" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="SETTINGS" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement class="tab" style="flex-grow: 1;">
+                <ui:VisualElement name="CarShopTab" class="tab" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="CAR SHOP" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
                 <ui:VisualElement class="tab" style="flex-grow: 1;">
@@ -23,7 +23,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="TabContent" class="tab-content" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0);">
-                <ui:VisualElement name="Levels" class="levels page page__left" style="flex-grow: 1; display: flex;">
+                <ui:VisualElement name="Levels" class="levels page" style="flex-grow: 1; display: flex; justify-content: center;">
                     <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" style="height: 100%; width: 100%; display: flex;">
                         <ui:VisualElement name="FirstLevel" class="level" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" />
@@ -38,8 +38,13 @@
                             <ui:Label tabindex="-1" text="4" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                         </ui:VisualElement>
                     </ui:ScrollView>
+                    <ui:VisualElement name="Mode" style="flex-grow: 0; position: relative; width: 100%; height: 55%; justify-content: space-between; display: none;">
+                        <ui:Button text="HOST" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Host" style="height: 116px; font-size: 51px; -unity-font-style: bold; background-color: rgb(255, 255, 255); color: rgb(255, 95, 0);" />
+                        <ui:Button text="JOIN" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Join" style="height: 116px; font-size: 51px; -unity-font-style: bold; color: rgb(255, 95, 0); background-color: rgb(255, 255, 255);" />
+                        <ui:Button text="OFFLINE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Offline" style="height: 116px; font-size: 51px; -unity-font-style: bold; background-color: rgb(255, 255, 255); color: rgb(255, 95, 0);" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="Customization" class="page" style="flex-grow: 0; width: 27%;">
+                <ui:VisualElement name="Customization" class="page page__left" style="flex-grow: 0; width: 27%;">
                     <ui:VisualElement name="RearSpoilerOption" class="customization_field" style="flex-grow: 0;">
                         <ui:Label tabindex="-1" text="Add/Remove Rear Spoiler" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 30px;" />
                     </ui:VisualElement>

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using DriftGame.Cars;
+using DriftGame.Network;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace DriftGame.UI
 {
     public class DriftScoreUIPresenter : MonoBehaviour
     {
-        [SerializeField] private Car _car;
+        private CarNetwork _car;
         [SerializeField] private TextMeshProUGUI _totalScoreText;
         [SerializeField] private TextMeshProUGUI _currentScoreText;
         [SerializeField] private TextMeshProUGUI _factorText;
