@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -51,10 +50,13 @@ namespace DriftGame.Network
             });
         }
         
-        public NetworkObject GetPlayer(PlayerRef playerRef)
-        {
-            _spawnedPlayers.TryGetValue(playerRef, out NetworkObject playerObject);
-            return playerObject;
+        public NetworkObject GetPlayerNetworkObject(PlayerRef player){
+            if (_runner.TryGetPlayerObject(player, out var plObject)){
+                return plObject.GetComponent<NetworkObject>();
+            }
+
+            Debug.LogError("Player Object Not found");
+            return null;
         }
         
         private void OnGUI()
@@ -88,8 +90,13 @@ namespace DriftGame.Network
             {
                 Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
                 NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
-                _spawnedPlayers.Add(player, networkPlayerObject);
+                runner.SetPlayerObject(player, networkPlayerObject);
             }
+        }
+
+        private void SetPlayerObject()
+        {
+            
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

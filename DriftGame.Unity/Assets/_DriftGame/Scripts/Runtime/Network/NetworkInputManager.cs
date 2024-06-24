@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DriftGame.Network;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class NetworkInputManager : SimulationBehaviour, IBeforeUpdate, INetworkRunnerCallbacks
 {
@@ -49,6 +47,7 @@ public class NetworkInputManager : SimulationBehaviour, IBeforeUpdate, INetworkR
     {
         if (player == runner.LocalPlayer)
         {
+            Debug.Log("Input Manager " + player.PlayerId);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

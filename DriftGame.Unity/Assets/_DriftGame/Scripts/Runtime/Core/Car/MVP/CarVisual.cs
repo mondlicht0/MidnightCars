@@ -12,11 +12,6 @@ namespace CarOut.Cars.MVP
 		private Color _savedColor;
 		private bool _hasSpoiler;
 
-		private void Start()
-		{
-			InitVisual();
-		}
-
 		public void ChangeColor(Color color)
 		{
 			_carRenderer.material.color = color;

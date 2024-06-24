@@ -23,7 +23,7 @@ namespace DriftGame.Systems
         {
             SetupMobileSettings();
             _instance = new GameEntryPoint();
-            _instance.RunGame();
+            //_instance.RunGame();
         }
 
         private static void SetupMobileSettings()

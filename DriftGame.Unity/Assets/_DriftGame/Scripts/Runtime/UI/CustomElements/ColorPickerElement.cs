@@ -42,9 +42,10 @@ public class ColorPickerElement : VisualElement
     {
         generateVisualContent += OnGenerateVisualContent;
         RegisterCallback<ClickEvent>(OnMouseClicked);
-        RegisterCallback<DragExitedEvent>(OnDragExited);
+        //RegisterCallback<DragExitedEvent>(OnDragExited);
     }
 
+    /*
     private void OnDragExited(DragExitedEvent evt)
     {
         Vector2 dir = evt.localMousePosition - contentRect.center;
@@ -54,7 +55,7 @@ public class ColorPickerElement : VisualElement
         Brightness = dir.magnitude / (swh*0.4f);
         MarkDirtyRepaint();
         OnColorPicked?.Invoke(Color);
-    }
+    }*/
 
     private void OnMouseClicked(ClickEvent evt)
     {
