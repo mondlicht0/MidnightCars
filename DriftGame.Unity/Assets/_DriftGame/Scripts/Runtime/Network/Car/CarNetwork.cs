@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using CarOut.Cars.MVP;
 using Cysharp.Threading.Tasks;
+using DriftGame.Ads;
 using DriftGame.Cars;
 using DriftGame.Systems;
 using DriftGame.Systems.SaveSystem;
@@ -24,6 +25,8 @@ namespace DriftGame.Network
         private CarController _controller;
         private Vector2 _moveInput;
         private CancellationTokenSource _cancel;
+        private AdsManager _adsManager;
+        private NetworkGameManager _networkGameManager;
         
         private float _speed;
         public float DriftAngle { get; private set; }
@@ -48,6 +51,13 @@ namespace DriftGame.Network
             _carPresenter.Visual.InitVisual();
         }
 
+        private void Start()
+        {
+            _adsManager = FindFirstObjectByType<AdsManager>();
+            _networkGameManager = FindFirstObjectByType<NetworkGameManager>();
+            _adsManager.OnGetRewarded += DoubleScore;
+        }
+
         public override void Spawned()
         {
             if (HasInputAuthority)
@@ -58,7 +68,9 @@ namespace DriftGame.Network
 
         public override void FixedUpdateNetwork()
         {
-            if (!NetworkGameManager.Instance.IsGameOver)
+            if (_networkGameManager == null) return;
+            
+            if (!_networkGameManager.IsGameOver)
             {
                 if (GetInput(out NetworkInputData input))
                 {
@@ -68,11 +80,11 @@ namespace DriftGame.Network
                 _carPresenter.PhysicsUpdate();
                 HandleDrift();
             }
+        }
 
-            else
-            {
-                
-            }
+        private void DoubleScore()
+        {
+            TotalScore *= 2;
         }
         
         private void HandleDrift()

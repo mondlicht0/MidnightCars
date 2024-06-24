@@ -15,6 +15,7 @@ namespace DriftGame.Cars
         [Space] 
         [SerializeField] private AnimationCurve _steeringCurve;
         
+        private NetworkGameManager _networkGameManager;
         private Rigidbody _rigidbody;
         private float _currentSpeed;
         private float _slipAngle;
@@ -27,7 +28,8 @@ namespace DriftGame.Cars
 
         private void Start()
         {
-            NetworkGameManager.Instance.OnTimerEnded += StopCar;
+            _networkGameManager = FindFirstObjectByType<NetworkGameManager>();
+            _networkGameManager.OnTimerEnded += StopCar;
         }
 
         public void ApplyController(Vector2 movementInput, bool handbrakeInput)

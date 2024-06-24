@@ -1,15 +1,15 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using DriftGame.Systems;
 using DriftGame.Systems.SaveSystem;
 using DriftGame.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace DriftGame
 {
-    public class GarageSceneInstaller : MonoInstaller
+    public class GarageSceneInstaller : MonoInstaller, IRunScene
     {
         [SerializeField] private MainMenuPresenter _mainMenu;
         [SerializeField] private DataPersistenceManager _dataPersistence;

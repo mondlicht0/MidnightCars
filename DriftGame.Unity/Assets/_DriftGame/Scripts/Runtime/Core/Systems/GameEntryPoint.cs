@@ -23,7 +23,7 @@ namespace DriftGame.Systems
         {
             SetupMobileSettings();
             _instance = new GameEntryPoint();
-            //_instance.RunGame();
+            _instance.RunGame();
         }
 
         private static void SetupMobileSettings()
@@ -53,11 +53,20 @@ namespace DriftGame.Systems
         {
             _uiRoot.ShowLoadingScreen();
             await SceneManager.LoadSceneAsync(Scenes.Boot);
-            await SceneManager.LoadSceneAsync(Scenes.Garage);
+            await SceneManager.LoadSceneAsync(Scenes.Gameplay);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            var sceneInstaller = Object.FindFirstObjectByType<GarageSceneInstaller>();
-            sceneInstaller.Run(_uiRoot);
+            var sceneInstaller = Object.FindFirstObjectByType<GameplaySceneInstaller>();
+            try
+            {
+                //sceneInstaller.TryGetComponent(out IRunScene runScene);
+                sceneInstaller.Run(_uiRoot);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("There is no run scene");
+                throw;
+            }
             
             _uiRoot.HideLoadingScreen();
         }

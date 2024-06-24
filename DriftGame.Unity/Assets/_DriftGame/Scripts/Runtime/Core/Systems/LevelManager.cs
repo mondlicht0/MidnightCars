@@ -1,26 +1,30 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using DriftGame;
+using DriftGame.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
-namespace _DriftGame.Scripts.Runtime.Core.Systems
+namespace DriftGame.Systems
 {
     public class LevelManager : MonoBehaviour
     {
-        private UIRoot _uiRoot;
-        
-        public async UniTask LoadLevel()
+        [SerializeField] private GameOverUIPresenter _gameOverUIPresenter;
+
+        private void Awake()
         {
-            _uiRoot.ShowLoadingScreen();
-            await SceneManager.LoadSceneAsync(Scenes.Gameplay);
+            _gameOverUIPresenter.OnLevelRetry += () => LoadLevel("Gameplay");
+        }
+
+        public async UniTask LoadLevel(string sceneName)
+        {
+            UIRoot.Instance.ShowLoadingScreen();
+            await SceneManager.LoadSceneAsync(sceneName);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-            var sceneInstaller = Object.FindFirstObjectByType<GameplaySceneInstaller>();
-            sceneInstaller.Run(_uiRoot);
-            
-            _uiRoot.HideLoadingScreen();
+            var sceneInstaller = FindObjectOfType<MonoBehaviour>();
+            sceneInstaller.TryGetComponent(out IRunScene scene);
+            UIRoot.Instance.HideLoadingScreen();
+            scene.Run(UIRoot.Instance);
         }
     }
 }

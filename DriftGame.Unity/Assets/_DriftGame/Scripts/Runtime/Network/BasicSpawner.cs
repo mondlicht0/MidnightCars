@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DriftGame.UI;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -10,7 +11,8 @@ namespace DriftGame.Network
     public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         public static BasicSpawner Instance { get; private set; }
-        
+
+        [SerializeField] private GameOverUIPresenter _gameOverUIPresenter;
         [SerializeField] private NetworkPrefabRef _playerPrefab;
         private Dictionary<PlayerRef, NetworkObject> _spawnedPlayers = new();
         private NetworkRunner _runner;
@@ -26,8 +28,9 @@ namespace DriftGame.Network
             else
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
             }
+
+            _gameOverUIPresenter.OnLevelRetry += () => _runner.Shutdown();
         }
         
         private async void StartGame(GameMode mode)
