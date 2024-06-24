@@ -3,6 +3,7 @@ using System.Threading;
 using CarOut.Cars.MVP;
 using Cysharp.Threading.Tasks;
 using DriftGame.Cars;
+using DriftGame.Systems;
 using DriftGame.Systems.SaveSystem;
 using Fusion;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace DriftGame.Network
         public event Action OnNearStopDrifting;
         public event Action OnEndDrifting;
         public event Action OnEnded;
-
+        
         private void Awake()
         {
             RigidBody = GetComponent<Rigidbody>();
@@ -57,13 +58,21 @@ namespace DriftGame.Network
 
         public override void FixedUpdateNetwork()
         {
-            if (GetInput(out NetworkInputData input))
+            if (!NetworkGameManager.Instance.IsGameOver)
             {
-                _carPresenter.LogicUpdate(input.Direction, false);
-            }
+                if (GetInput(out NetworkInputData input))
+                {
+                    _carPresenter.LogicUpdate(input.Direction, false);
+                }
             
-            _carPresenter.PhysicsUpdate();
-            HandleDrift();
+                _carPresenter.PhysicsUpdate();
+                HandleDrift();
+            }
+
+            else
+            {
+                
+            }
         }
         
         private void HandleDrift()

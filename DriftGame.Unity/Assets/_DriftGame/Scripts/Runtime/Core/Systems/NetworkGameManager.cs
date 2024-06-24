@@ -11,6 +11,8 @@ namespace DriftGame.Systems
 {
     public class NetworkGameManager : SimulationBehaviour, INetworkRunnerCallbacks
     {
+        public static NetworkGameManager Instance { get; private set; }
+        
         private CarNetwork _car;
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private TextMeshProUGUI _scoreText;
@@ -18,22 +20,36 @@ namespace DriftGame.Systems
 
         private TickTimer _timer;
         private float _currentTime;
-        private bool _isGameOver;
+        
+        public bool IsGameOver { get; private set; }
 
         public event Action OnTimerEnded;
 
         private const float GameTime = 15f;
 
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+
         public override void FixedUpdateNetwork()
         {
-            if (!_isGameOver)
+            if (!IsGameOver)
             {
                 float remainingTime = _timer.RemainingTime(Runner).Value;
                 _timerText.text = FormatTime(remainingTime);
 
                 if (remainingTime <= 0)
                 {
-                    _isGameOver = true;
+                    IsGameOver = true;
                     OnTimerEnded?.Invoke();
                 }
             }
@@ -48,9 +64,12 @@ namespace DriftGame.Systems
 
         private void ShowGameOverMenu()
         {
+            IsGameOver = true;
             _gameOverMenu.gameObject.SetActive(true);
             _scoreText.text = "Your score: " + _car.TotalScore.ToString("###, ###, 000");
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         public void OnExitButtonPressed()

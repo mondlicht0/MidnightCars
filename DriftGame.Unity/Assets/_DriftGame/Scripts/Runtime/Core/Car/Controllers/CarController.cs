@@ -1,6 +1,5 @@
-﻿using System;
+﻿using DriftGame.Systems;
 using UnityEngine;
-using Zenject;
 
 namespace DriftGame.Cars
 {
@@ -25,7 +24,12 @@ namespace DriftGame.Cars
         {
             _rigidbody = GetComponent<Rigidbody>();
         }
-        
+
+        private void Start()
+        {
+            NetworkGameManager.Instance.OnTimerEnded += StopCar;
+        }
+
         public void ApplyController(Vector2 movementInput, bool handbrakeInput)
         {
             float steeringInput = movementInput.x;
@@ -37,6 +41,21 @@ namespace DriftGame.Cars
             ApplySteering(steeringInput);
             ApplyBrake(handbrakeInput);
             ApplyWheelTransforms();
+        }
+
+        private void StopCar()
+        {
+            StopWheel(_FRWheel);
+            StopWheel(_FLWheel);
+            StopWheel(_RRWheel);
+            StopWheel(_RLWheel);
+        }
+
+        private void StopWheel(Wheel wheel)
+        {
+            wheel.WheelCollider.transform.position = Vector3.zero;
+            wheel.WheelCollider.motorTorque = 0;
+            wheel.WheelCollider.brakeTorque = int.MaxValue;
         }
 
         private void UpdateSlipAngle(float accelerationInput)
@@ -60,8 +79,8 @@ namespace DriftGame.Cars
 
         private void ApplyAcceleration(float accelerationInput)
         {
-            _RRWheel.WheelCollider.motorTorque = _carConfig.MotorPower * accelerationInput;
-            _RLWheel.WheelCollider.motorTorque = _carConfig.MotorPower * accelerationInput;
+            _RRWheel.WheelCollider.motorTorque = _carConfig.MotorPower * accelerationInput * 1000f;
+            _RLWheel.WheelCollider.motorTorque = _carConfig.MotorPower * accelerationInput * 1000f;
         }
         
         private void ApplyBrake(bool handbrakeInput)

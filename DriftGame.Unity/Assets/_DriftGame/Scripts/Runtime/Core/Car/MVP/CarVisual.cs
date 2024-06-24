@@ -1,4 +1,5 @@
 using DriftGame.Systems.SaveSystem;
+using Fusion;
 using UnityEngine;
 
 namespace CarOut.Cars.MVP 
@@ -9,19 +10,19 @@ namespace CarOut.Cars.MVP
 		[SerializeField] private MeshRenderer _carRenderer;
 		[SerializeField] private GameObject _spoiler;
 		
-		private Color _savedColor;
-		private bool _hasSpoiler;
+		[Networked, OnChangedRender(nameof(OnColorChanged))] public Color SavedColor { get; set; }
+		[Networked] private bool HasSpoiler { get; set; }
 
 		public void ChangeColor(Color color)
 		{
 			_carRenderer.material.color = color;
-			_savedColor = color;
+			SavedColor = color;
 		}
 
 		public void AddSpoiler()
 		{
 			_spoiler.SetActive(true);
-			_hasSpoiler = true;
+			HasSpoiler = true;
 		}
 
 		public void InitVisual()
@@ -48,20 +49,25 @@ namespace CarOut.Cars.MVP
 				_carRenderer = meshRenderer;
 			}
 		}
+		
+		private void OnColorChanged()
+		{
+			_carRenderer.material.color = SavedColor;
+		}
 
 		public void LoadData(GameData data)
 		{
 			Debug.Log("Car Visual Data Loaded");
-			_savedColor = data.Color;
-			_hasSpoiler = data.HasSpoiler;
-			ChangeColor(_savedColor);
+			SavedColor = data.Color;
+			HasSpoiler = data.HasSpoiler;
+			ChangeColor(SavedColor);
 		}
 
 		public void SaveData(ref GameData data)
 		{
 			Debug.Log("Car Visual Data Saved");
-			data.Color = _savedColor;
-			data.HasSpoiler = _hasSpoiler;
+			data.Color = SavedColor;
+			data.HasSpoiler = HasSpoiler;
 		}
 	}
 }
