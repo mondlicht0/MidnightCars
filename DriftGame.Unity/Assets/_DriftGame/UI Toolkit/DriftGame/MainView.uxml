@@ -15,10 +15,10 @@
                 <ui:VisualElement name="CarShopTab" class="tab" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="CAR SHOP" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement class="tab" style="flex-grow: 1;">
+                <ui:VisualElement class="tab" style="flex-grow: 1; display: none;">
                     <ui:Label tabindex="-1" text="SHOP" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement class="tab" style="flex-grow: 1;">
+                <ui:VisualElement class="tab" style="flex-grow: 1; display: none;">
                     <ui:Label tabindex="-1" text="CURRENCY" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -28,13 +28,13 @@
                         <ui:VisualElement name="FirstLevel" class="level" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="SecondLevel" class="level" style="flex-grow: 1;">
+                        <ui:VisualElement name="SecondLevel" class="level" style="flex-grow: 1; display: none;">
                             <ui:Label tabindex="-1" text="2" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="ThirdLevel" class="level" style="flex-grow: 1;">
+                        <ui:VisualElement name="ThirdLevel" class="level" style="flex-grow: 1; display: none;">
                             <ui:Label tabindex="-1" text="3" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="FourthLevel" class="level" style="flex-grow: 1;">
+                        <ui:VisualElement name="FourthLevel" class="level" style="flex-grow: 1; display: none;">
                             <ui:Label tabindex="-1" text="4" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                         </ui:VisualElement>
                     </ui:ScrollView>
