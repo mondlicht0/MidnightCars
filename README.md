@@ -21,3 +21,5 @@ Only IronSource was connected as an advertising mediator
 
 **UI**
 The UI menu is located in the UI Toolkit folder **(DriftGame/MainView.uxml)** of the project folder and the appropriate technology was used
+
+***I hope the test task was completed at a fairly good level, so thank you in advance for your possible participation***
