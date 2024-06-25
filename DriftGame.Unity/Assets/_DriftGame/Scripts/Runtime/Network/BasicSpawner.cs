@@ -66,13 +66,18 @@ namespace DriftGame.Network
         {
             if (_runner == null)
             {
-                if (GUI.Button(new Rect(0,0,200,40), "Host"))
+                if (GUI.Button(new Rect(0,0,300,50), "Host"))
                 {
                     StartGame(GameMode.Host);
                 }
-                if (GUI.Button(new Rect(0,40,200,40), "Join"))
+                if (GUI.Button(new Rect(0,40,300,50), "Join"))
                 {
                     StartGame(GameMode.Client);
+                }
+                
+                if (GUI.Button(new Rect(0,80,300,50), "Offline"))
+                {
+                    StartGame(GameMode.Single);
                 }
             }
         }

@@ -9,12 +9,10 @@ public class LocalCameraHandler : NetworkBehaviour
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     public override void Spawned()
     {
-        
-    }
-
-    private void Start()
-    {
-        SetupVirtualCamera(transform, transform);
+        if (HasInputAuthority)
+        {
+            SetupVirtualCamera(transform, transform);
+        }
     }
 
     private void SetupVirtualCamera(Transform follow, Transform lookAt)

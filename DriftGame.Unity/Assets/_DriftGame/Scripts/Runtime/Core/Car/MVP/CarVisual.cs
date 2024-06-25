@@ -10,8 +10,8 @@ namespace CarOut.Cars.MVP
 		[SerializeField] private MeshRenderer _carRenderer;
 		[SerializeField] private GameObject _spoiler;
 		
-		[Networked, OnChangedRender(nameof(OnColorChanged))] public Color SavedColor { get; set; }
-		[Networked] private bool HasSpoiler { get; set; }
+		[Networked] public Color SavedColor { get; set; }
+		[Networked] public bool HasSpoiler { get; set; }
 
 		public void ChangeColor(Color color)
 		{
@@ -61,13 +61,16 @@ namespace CarOut.Cars.MVP
 			SavedColor = data.Color;
 			HasSpoiler = data.HasSpoiler;
 			ChangeColor(SavedColor);
+			_spoiler.SetActive(HasSpoiler);
 		}
 
 		public void SaveData(ref GameData data)
 		{
-			Debug.Log("Car Visual Data Saved");
-			data.Color = SavedColor;
-			data.HasSpoiler = HasSpoiler;
+			Debug.Log("Car Visual Data Loaded");
+			SavedColor = data.Color;
+			HasSpoiler = data.HasSpoiler;
+			ChangeColor(SavedColor);
+			_spoiler.SetActive(HasSpoiler);
 		}
 	}
 }

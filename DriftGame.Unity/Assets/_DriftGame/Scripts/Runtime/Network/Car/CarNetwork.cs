@@ -70,7 +70,7 @@ namespace DriftGame.Network
         {
             if (_networkGameManager == null) return;
             
-            if (!_networkGameManager.IsGameOver)
+            if (!_networkGameManager.IsGameOver && HasStateAuthority)
             {
                 if (GetInput(out NetworkInputData input))
                 {

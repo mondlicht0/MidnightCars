@@ -7,6 +7,8 @@ namespace DriftGame.Ads
     {
 #if UNITY_ANDROID
         private const string AppKey = "1edd4e075";
+        #else
+        private const string AppKey = "undefined";
 #endif
 
         public event Action OnGetRewarded;

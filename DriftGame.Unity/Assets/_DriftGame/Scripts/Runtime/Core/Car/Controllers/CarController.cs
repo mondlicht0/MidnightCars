@@ -1,9 +1,10 @@
 ﻿using DriftGame.Systems;
+using Fusion;
 using UnityEngine;
 
 namespace DriftGame.Cars
 {
-    public class CarController : MonoBehaviour
+    public class CarController : SimulationBehaviour
     {
         [SerializeField] private CarConfig _carConfig;
         [Space]

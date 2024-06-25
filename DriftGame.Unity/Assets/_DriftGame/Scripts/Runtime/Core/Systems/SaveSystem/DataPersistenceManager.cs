@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace DriftGame.Systems.SaveSystem
 {
-    public class DataPersistenceManager : MonoBehaviour
+    public class DataPersistenceManager : NetworkBehaviour
     {
         public static DataPersistenceManager Instance { get; private set; }
         

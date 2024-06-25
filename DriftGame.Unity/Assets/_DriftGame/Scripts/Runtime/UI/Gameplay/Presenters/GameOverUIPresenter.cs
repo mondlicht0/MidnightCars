@@ -1,13 +1,14 @@
 using System;
 using DriftGame.Ads;
 using DriftGame.Systems;
+using Fusion;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace DriftGame.UI
 {
-    public class GameOverUIPresenter : MonoBehaviour
+    public class GameOverUIPresenter : NetworkBehaviour
     {
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _menuButton;
@@ -32,7 +33,7 @@ namespace DriftGame.UI
             _doubleRewardButton.onClick.AddListener(_adsManager.ShowRewardedAd);
         }
 
-        private void Start()
+        private void Awake()
         {
             gameObject.SetActive(false);
         }

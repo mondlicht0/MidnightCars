@@ -1,12 +1,13 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DriftGame.UI;
+using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace DriftGame.Systems
 {
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : NetworkBehaviour
     {
         [SerializeField] private GameOverUIPresenter _gameOverUIPresenter;
 
