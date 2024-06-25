@@ -48,7 +48,6 @@ namespace DriftGame.Network
             _carPresenter = new CarPresenter.Builder()
                 .WithConfig(_carData)
                 .Build(_carVisual, _controller);
-            _carPresenter.Visual.InitVisual();
         }
 
         private void Start()
@@ -63,6 +62,7 @@ namespace DriftGame.Network
             if (HasInputAuthority)
             {
                 DataPersistenceManager.Instance.LoadGameData();
+                _carPresenter.Visual.InitVisual();
             }
         }
 

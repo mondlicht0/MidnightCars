@@ -1326,11 +1326,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538465160945480615, guid: 8a8728c43caf80e4c8d29c36006fee5e,
         type: 3}
+      propertyPath: _carMesh
+      value: 
+      objectReference: {fileID: 8733489422405066267}
+    - target: {fileID: 7538465160945480615, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+        type: 3}
       propertyPath: _spoiler
       value: 
       objectReference: {fileID: 8964903082264958124}
+    - target: {fileID: 7538465160945480615, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538465160945480615, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+        type: 3}
+      propertyPath: _carRenderer
+      value: 
+      objectReference: {fileID: 6063911223765871403}
     m_RemovedComponents:
     - {fileID: 9109538589465215937, guid: 8a8728c43caf80e4c8d29c36006fee5e, type: 3}
+    - {fileID: 7538465160945480615, guid: 8a8728c43caf80e4c8d29c36006fee5e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5939273673431965145, guid: 8a8728c43caf80e4c8d29c36006fee5e,
@@ -1350,6 +1366,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 6781099782559276517}
+    - targetCorrespondingSourceObject: {fileID: 386671850630715176, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1132170198069436382}
     - targetCorrespondingSourceObject: {fileID: 386671850630715176, guid: 8a8728c43caf80e4c8d29c36006fee5e,
         type: 3}
       insertIndex: -1
@@ -1406,6 +1426,22 @@ MonoBehaviour:
   _minimumSpeed: 5
   _minimumAngle: 10
   _driftingDelay: 0.2
+  _CarColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1132170198069436382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198507750462584455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6a9396bba34f34d8b4b1e29a5c74f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carMesh: {fileID: 8733489422405066267}
+  _carRenderer: {fileID: 6063911223765871403}
+  _spoiler: {fileID: 8964903082264958124}
 --- !u!114 &8701838952388940555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,6 +1497,18 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
+--- !u!23 &6063911223765871403 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9014391181014649476, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2972052659124265391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8733489422405066267 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 5768350801928830900, guid: 8a8728c43caf80e4c8d29c36006fee5e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2972052659124265391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8886257191739636854 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5939273673431965145, guid: 8a8728c43caf80e4c8d29c36006fee5e,

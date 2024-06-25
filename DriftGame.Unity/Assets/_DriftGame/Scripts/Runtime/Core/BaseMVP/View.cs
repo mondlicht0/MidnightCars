@@ -1,4 +1,3 @@
-using Fusion;
 using UnityEngine;
 
 public abstract class View : MonoBehaviour

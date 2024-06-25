@@ -1,5 +1,4 @@
 using DriftGame.Systems.SaveSystem;
-using Fusion;
 using UnityEngine;
 
 namespace CarOut.Cars.MVP 
@@ -10,9 +9,30 @@ namespace CarOut.Cars.MVP
 		[SerializeField] private MeshRenderer _carRenderer;
 		[SerializeField] private GameObject _spoiler;
 		
-		[Networked] public Color SavedColor { get; set; }
-		[Networked] public bool HasSpoiler { get; set; }
+		public Color SavedColor { get; set; }
+		
+		public bool HasSpoiler { get; set; }
 
+		public void Start()
+		{
+			//_changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
+		}
+
+		public void InitVisual()
+		{
+			Debug.Log("Car Init Visual");
+			
+			if (_carMesh == null && TryGetComponent(out MeshFilter meshFilter))
+			{
+				_carMesh = meshFilter;
+			}
+
+			if (_carRenderer == null && TryGetComponent(out MeshRenderer meshRenderer))
+			{
+				_carRenderer = meshRenderer;
+			}
+		}
+		
 		public void ChangeColor(Color color)
 		{
 			_carRenderer.material.color = color;
@@ -25,41 +45,12 @@ namespace CarOut.Cars.MVP
 			HasSpoiler = true;
 		}
 
-		public void InitVisual()
-		{
-			Debug.Log("Car Init Visual");
-			
-			if (_carMesh != null)
-			{
-				return;
-			}
-			
-			if (TryGetComponent(out MeshFilter meshFilter))
-			{
-				_carMesh = meshFilter;
-			}
-
-			if (_carRenderer != null)
-			{
-				return;
-			}
-
-			if (TryGetComponent(out MeshRenderer meshRenderer))
-			{
-				_carRenderer = meshRenderer;
-			}
-		}
-		
-		private void OnColorChanged()
-		{
-			_carRenderer.material.color = SavedColor;
-		}
-
 		public void LoadData(GameData data)
 		{
 			Debug.Log("Car Visual Data Loaded");
 			SavedColor = data.Color;
 			HasSpoiler = data.HasSpoiler;
+			
 			ChangeColor(SavedColor);
 			_spoiler.SetActive(HasSpoiler);
 		}
