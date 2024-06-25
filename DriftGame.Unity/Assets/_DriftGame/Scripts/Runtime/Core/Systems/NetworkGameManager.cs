@@ -23,11 +23,7 @@ namespace DriftGame.Systems
 
         public event Action OnTimerEnded;
 
-        private const float GameTime = 15f;
-
-        private void Awake()
-        {
-        }
+        private const float GameTime = 120f;
 
         public override void FixedUpdateNetwork()
         {
