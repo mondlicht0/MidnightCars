@@ -3,6 +3,8 @@
 # General Information:
 **Unity Version: 2022.3.31f**
 
+**Used technologies: UniTask, Zenject (in very rare cases), Photon Fusion 2, Cinemachine, Input System**
+
 **The game must be launched from the Boot scene**
 
 The **_DriftGame folder** is a project folder and stores all scripts, scenes, art content, etc., that are related to the game
@@ -10,7 +12,7 @@ The **_DriftGame folder** is a project folder and stores all scripts, scenes, ar
 Save System based on JSON data persistence
 
 # Network Engine
-Photon Fusion 2 (wasn't familiar with this engine before)
+Photon Fusion 2
 
 # Controls
 WASD - Car Movement
@@ -27,7 +29,7 @@ The UI menu is located in the UI Toolkit folder **(DriftGame/MainView.uxml)** of
 # Other
 I hope the test task was completed at a fairly good level, so thank you in advance for the opportunity to complete it.
 
-Perhaps in some places it was done in a way that should not have been done (in terms of code quality, the use of singletons), I tried to complete the task in accordance with the deadline and in some places I deliberately simplified the code in order to meet the deadline
+Perhaps in some places it was done in a way that should not have been done (in terms of code quality, the use of singletons), I tried to complete the task in accordance with the deadline and in some places I deliberately simplified the code in order to meet the deadline. I was not familiar with Photon before, so I hope I was able to avoid obvious errors in network scripts
 
 And dear person who checks my project, I would be glad to receive feedback on the code and the project itself in any case 🙃
 
