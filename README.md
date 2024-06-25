@@ -29,7 +29,7 @@ The UI menu is located in the UI Toolkit folder **(DriftGame/MainView.uxml)** of
 # Other
 I hope the test task was completed at a fairly good level, so thank you in advance for the opportunity to complete it. 
 
-I didn’t have time to implement some things (car store, IAP store, currency exchange), that's why they're not on the menu either
+I didn’t have time to implement some menu things (car store, IAP store, currency exchange), that's why they're not on the menu either
 
 Perhaps in some places it was done in a way that should not have been done (in terms of code quality, the use of singletons), I tried to complete the task in accordance with the deadline and in some places I deliberately simplified the code in order to meet the deadline. I was not familiar with Photon before, so I hope I was able to avoid obvious errors in network scripts
 
