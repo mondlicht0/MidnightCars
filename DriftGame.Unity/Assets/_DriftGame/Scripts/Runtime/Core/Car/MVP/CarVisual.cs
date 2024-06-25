@@ -60,8 +60,6 @@ namespace CarOut.Cars.MVP
 			Debug.Log("Car Visual Data Loaded");
 			SavedColor = data.Color;
 			HasSpoiler = data.HasSpoiler;
-			ChangeColor(SavedColor);
-			_spoiler.SetActive(HasSpoiler);
 		}
 	}
 }

@@ -18,6 +18,7 @@ namespace DriftGame.UI
         private LevelManager _levelManager;
 
         public event Action OnLevelRetry;
+        public event Action OnMenu;
         
         [Inject]
         private void Construct(AdsManager adsManager, LevelManager levelManager)
@@ -29,7 +30,7 @@ namespace DriftGame.UI
         private void OnEnable()
         {
             _retryButton.onClick.AddListener(() => OnLevelRetry?.Invoke());
-            _menuButton.onClick.AddListener(() => _levelManager.LoadLevel(Scenes.Garage));
+            _menuButton.onClick.AddListener(() => OnMenu?.Invoke());
             _doubleRewardButton.onClick.AddListener(_adsManager.ShowRewardedAd);
         }
 

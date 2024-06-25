@@ -13,13 +13,26 @@ namespace DriftGame.Systems
 
         private void Awake()
         {
-            _gameOverUIPresenter.OnLevelRetry += () => LoadLevel("Gameplay");
+            _gameOverUIPresenter.OnLevelRetry += () => LoadGameplay();
+            _gameOverUIPresenter.OnMenu += () => LoadMenu();
         }
-
-        public async UniTask LoadLevel(string sceneName)
+        
+        public async UniTask LoadMenu()
         {
             UIRoot.Instance.ShowLoadingScreen();
-            await SceneManager.LoadSceneAsync(sceneName);
+            await SceneManager.LoadSceneAsync(Scenes.Garage);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+            var sceneInstaller = FindObjectOfType<MonoBehaviour>();
+            sceneInstaller.TryGetComponent(out IRunScene scene);
+            UIRoot.Instance.HideLoadingScreen();
+            scene.Run(UIRoot.Instance);
+        }
+
+        public async UniTask LoadGameplay()
+        {
+            UIRoot.Instance.ShowLoadingScreen();
+            await SceneManager.LoadSceneAsync(Scenes.Gameplay);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
 
             var sceneInstaller = FindObjectOfType<MonoBehaviour>();

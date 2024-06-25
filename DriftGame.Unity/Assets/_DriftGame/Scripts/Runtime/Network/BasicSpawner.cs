@@ -31,6 +31,7 @@ namespace DriftGame.Network
             }
 
             _gameOverUIPresenter.OnLevelRetry += () => _runner.Shutdown();
+            _gameOverUIPresenter.OnMenu += () => _runner.Shutdown();
         }
         
         private async void StartGame(GameMode mode)
