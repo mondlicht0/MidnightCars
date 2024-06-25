@@ -26,3 +26,7 @@ I hope the test task was completed at a fairly good level, so thank you in advan
 Perhaps in some places it was done in a way that should not have been done (in terms of code quality, the use of singletons), I tried to complete the task in accordance with the deadline and in some places I deliberately simplified the code in order to meet the deadline
 
 And dear person who checks my project, I would be glad to receive feedback on the code and the project itself in any case 🙃
+
+Author Contacts:
+Telegram - @damirkub
+Email - damirzhakhan.j@gmail.com
