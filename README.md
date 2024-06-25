@@ -1,11 +1,12 @@
 # MidnightWorks-TestAssigment
  
 # General Information:
+**Unity Version: 2022.3.31f**
 **The game must be launched from the Boot scene**
 
 The **_DriftGame folder** is a project folder and stores all scripts, scenes, art content, etc., that are related to the game
 
-**Save System based on JSON data persistence**
+Save System based on JSON data persistence
 
 # Network Engine
 Photon Fusion 2 (wasn't familiar with this engine before)
