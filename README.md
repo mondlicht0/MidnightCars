@@ -7,19 +7,19 @@ The **_DriftGame folder** is a project folder and stores all scripts, scenes, ar
 
 **Save System based on JSON data persistence**
 
-#Network Engine
+# Network Engine
 Photon Fusion 2 (wasn't familiar with this engine before)
 
-#Controls
+# Controls
 WASD - Car Movement
 
-#Optimization
+# Optimization
 There is no light baking in the gameplay scene (as this would take a very long time), only static objects for optimization and occlusion culling
 
-#Ads
+# Ads
 Only IronSource was connected as an advertising mediator
 
-#UI
+# UI
 The UI menu is located in the UI Toolkit folder **(DriftGame/MainView.uxml)** of the project folder and the appropriate technology was used. The gameplay interface is based on UGUI (Canvas)
 
 # Other
@@ -28,6 +28,6 @@ Perhaps in some places it was done in a way that should not have been done (in t
 
 And dear person who checks my project, I would be glad to receive feedback on the code and the project itself in any case 🙃
 
-Author Contacts:
+# Developer Contacts:
 Telegram - @damirkub
 Email - damirzhakhan.j@gmail.com
